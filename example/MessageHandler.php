@@ -34,16 +34,16 @@ class MessageHandler
             //            Text::send($message['raw']['ToUserName'], $message['content']);
         }
 
-        Hanson::messageHandler($message, $friends, $groups);
-        ColleagueGroup::messageHandler($message, $friends, $groups);
-        FeedbackGroup::messageHandler($message, $friends, $groups);
-        ExperienceGroup::messageHandler($message, $friends, $groups);
+//        Hanson::messageHandler($message, $friends, $groups);
+//        ColleagueGroup::messageHandler($message, $friends, $groups);
+//        FeedbackGroup::messageHandler($message, $friends, $groups);
+//        ExperienceGroup::messageHandler($message, $friends, $groups);
         //@todo sldc message handler
         SldcGroup::messageHandler($message, $friends, $groups);
 
         TextType::messageHandler($message, $friends, $groups);
         RecallType::messageHandler($message);
-        GuessNumber::messageHandler($message);
+//        GuessNumber::messageHandler($message);
 
         if ($message['type'] === 'new_friend') {
             Text::send($message['from']['UserName'], '客官，等你很久了！感谢跟 vbot 交朋友，如果可以帮我点个star，谢谢了！https://github.com/HanSon/vbot');
