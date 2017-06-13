@@ -17,12 +17,28 @@ class SldcGroup
             }
 
             if ($message['type'] === 'text') {
-                Text::send($message['from']['UserName'], 'good!');
+//                Text::send($message['from']['UserName'], 'good!');
                 if ($message['sender']['NickName'] === 'HanSon') {
                     if (str_contains($message['content'], '加人')) {
                         $username = str_replace('加人', '', $message['content']);
                         $friends->add($username, '我是你儿子');
                     }
+                }
+
+                if (str_contains($message['content'], '看')) {
+                    Text::send($message['from']['UserName'], 'look');
+                }
+
+                if (str_contains($message['content'], 'help')) {
+
+                    $msg = <<<EOF
+                    看昨天登录人数
+                    看今天数据
+                    看注册人数
+                    看用户信息
+EOF;
+
+                    Text::send($message['from']['UserName'], $msg);
                 }
 
                 if (str_contains($message['content'], '搜人')) {
@@ -56,6 +72,28 @@ class SldcGroup
             return isset($result['url']) ? $result['text'].$result['url'] : $result['text'];
         } catch (\Exception $e) {
             return '图灵API连不上了，再问问试试';
+        }
+    }
+
+
+    /**
+     * sldc回复
+     * @param $content
+     * @param $id
+     * @return string
+     */
+    private static function sldcReply($content, $id)
+    {
+        try {
+            $result = vbot('http')->post('http://www.tuling123.com/openapi/api', [
+                'key'    => 'cc0b3a15ab26404a9e98c39347281c55',
+                'info'   => $content,
+                'userid' => $id,
+            ], true);
+
+            return isset($result['url']) ? $result['text'].$result['url'] : $result['text'];
+        } catch (\Exception $e) {
+            return 'sldc online API连不上了，再问问试试';
         }
     }
 }
