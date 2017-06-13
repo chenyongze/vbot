@@ -37,4 +37,25 @@ class SldcGroup
             }
         }
     }
+
+    /**
+     * 图灵123回复
+     * @param $content
+     * @param $id
+     * @return string
+     */
+    private static function reply($content, $id)
+    {
+        try {
+            $result = vbot('http')->post('http://www.tuling123.com/openapi/api', [
+                'key'    => 'cc0b3a15ab26404a9e98c39347281c55',
+                'info'   => $content,
+                'userid' => $id,
+            ], true);
+
+            return isset($result['url']) ? $result['text'].$result['url'] : $result['text'];
+        } catch (\Exception $e) {
+            return '图灵API连不上了，再问问试试';
+        }
+    }
 }
