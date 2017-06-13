@@ -32,10 +32,8 @@ class SldcGroup
                 if (str_contains($message['content'], 'help')) {
 
                     $msg = <<<EOF
-                    看昨天登录人数
-                    看今天数据
-                    看注册人数
-                    看用户信息
+看版本更新人数
+---more
 EOF;
 
                     Text::send($message['from']['UserName'], $msg);
@@ -85,13 +83,13 @@ EOF;
     private static function sldcReply($content, $id)
     {
         try {
-            $result = vbot('http')->post('http://www.tuling123.com/openapi/api', [
+            $result = vbot('http')->post('https://api.shenglediancang.com/api/robot/run', [
                 'key'    => 'cc0b3a15ab26404a9e98c39347281c55',
                 'info'   => $content,
                 'userid' => $id,
             ], true);
-
-            return isset($result['url']) ? $result['text'].$result['url'] : $result['text'];
+            return $result['data']['text'];
+//            return isset($result['data']['url']) ? $result['text'].$result['url'] : $result['text'];
         } catch (\Exception $e) {
             return 'sldc online API连不上了，再问问试试';
         }
