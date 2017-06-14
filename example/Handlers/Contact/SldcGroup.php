@@ -21,32 +21,26 @@ class SldcGroup
                 if ($message['sender']['NickName'] === 'HanSon') {
                     if (str_contains($message['content'], '加人')) {
                         $username = str_replace('加人', '', $message['content']);
-                        $friends->add($username, '我是你儿子');
+                        $friends->add($username, 'xxxx');
                     }
                 }
 
                 if (str_contains($message['content'], '看')) {
-                    Text::send($message['from']['UserName'], 'look');
+                    Text::send($message['from']['UserName'], static::sldcReply($message['content'],$message['from']['UserName']));
                 }
 
-                if (str_contains($message['content'], 'help')) {
-
+                if (str_contains($message['content'], 'help') || str_contains($message['content'], '帮助')) {
                     $msg = <<<EOF
-看版本更新人数
+1.看版本更新人数
+2.##聊天内容
 ---more
 EOF;
-
                     Text::send($message['from']['UserName'], $msg);
                 }
 
-                if (str_contains($message['content'], '搜人')) {
-                    $nickname = str_replace('搜人', '', $message['content']);
-                    $members = $groups->getMembersByNickname($message['from']['UserName'], $nickname, true);
-                    $result = '搜索结果 数量：'.count($members)."\n";
-                    foreach ($members as $member) {
-                        $result .= $member['NickName'].' '.$member['UserName']."\n";
-                    }
-                    Text::send($message['from']['UserName'], $result);
+                if (str_contains($message['content'], '##')) {
+                    $content = str_replace('##', '', $message['content']);
+                    Text::send($message['from']['UserName'], static::reply($content, $message['from']['UserName']));
                 }
             }
         }
