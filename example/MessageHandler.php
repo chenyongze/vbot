@@ -51,21 +51,21 @@ class MessageHandler
 //            Text::send($message['from']['UserName'], '现在拉你进去vbot的测试群，进去后为了避免轰炸记得设置免骚扰哦！如果被不小心踢出群，跟我说声“拉我”我就会拉你进群的了。');
 //        }
 
-        if ($message['type'] === 'emoticon' && random_int(0, 1)) {
-            Emoticon::sendRandom($message['from']['UserName']);
-        }
+//        if ($message['type'] === 'emoticon' && random_int(0, 1)) {
+//            Emoticon::sendRandom($message['from']['UserName']);
+//        }
 
         // @todo
-        if ($message['type'] === 'official') {
-            vbot('console')->log('收到公众号消息:'.$message['title'].$message['description'].
-                $message['app'].$message['url']);
-        }
+//        if ($message['type'] === 'official') {
+//            vbot('console')->log('收到公众号消息:'.$message['title'].$message['description'].
+//                $message['app'].$message['url']);
+//        }
 
-        if ($message['type'] === 'request_friend') {
-            vbot('console')->log('收到好友申请:'.$message['info']['Content'].$message['avatar']);
-            if ($message['info']['Content'] === 'echo') {
-                $friends->approve($message);
-            }
-        }
+//        if ($message['type'] === 'request_friend') {
+//            vbot('console')->log('收到好友申请:'.$message['info']['Content'].$message['avatar']);
+//            if ($message['info']['Content'] === 'echo') {
+//                $friends->approve($message);
+//            }
+//        }
     }
 }
