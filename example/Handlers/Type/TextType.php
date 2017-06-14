@@ -19,33 +19,35 @@ class TextType
                 Text::send($message['from']['UserName'], 'Running:'.$datetime->diffForHumans(Carbon::now()));
             }
 
-            if ($message['content'] === '拉我') {
-                $username = $groups->getUsernameByNickname('Vbot 体验群');
-                $groups->addMember($username, $message['from']['UserName']);
-            }
+//            if ($message['content'] === '拉我') {
+//                $username = $groups->getUsernameByNickname('Vbot 体验群');
+//                $groups->addMember($username, $message['from']['UserName']);
+//            }
 
-            if ($message['content'] === '叫我') {
-                $username = $friends->getUsernameByNickname('HanSon');
-                Text::send($username, '主人');
-            }
+//            if ($message['content'] === '叫我') {
+//                $username = $friends->getUsernameByNickname('HanSon');
+//                Text::send($username, '主人');
+//            }
 
             if ($message['content'] === '头像') {
                 $avatar = $friends->getAvatar($message['from']['UserName']);
                 File::saveTo(vbot('config')['user_path'].'avatar/'.$message['from']['UserName'].'.jpg', $avatar);
             }
 
-            if ($message['content'] === '报名') {
-                $username = $groups->getUsernameByNickname('vbot 反馈群');
-                $groups->addMember($username, $message['from']['UserName']);
-            }
+//            if ($message['content'] === '报名') {
+//                $username = $groups->getUsernameByNickname('vbot 反馈群');
+//                $groups->addMember($username, $message['from']['UserName']);
+//            }
 
             if ($message['fromType'] === 'Friend') {
-                Text::send($message['from']['UserName'], static::reply($message['content'], $message['from']['UserName']));
+                if (str_contains($message['content'], '##')) {
+                    Text::send($message['from']['UserName'], static::reply($message['content'], $message['from']['UserName']));
+                }
             }
 
-            if ($message['fromType'] === 'Group' && $message['isAt']) {
-                Text::send($message['from']['UserName'], static::reply($message['pure'], $message['from']['UserName']));
-            }
+//            if ($message['fromType'] === 'Group' && $message['isAt']) {
+//                Text::send($message['from']['UserName'], static::reply($message['pure'], $message['from']['UserName']));
+//            }
         }
     }
 
