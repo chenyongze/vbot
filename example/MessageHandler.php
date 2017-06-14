@@ -41,8 +41,8 @@ class MessageHandler
         //@todo sldc message handler
         SldcGroup::messageHandler($message, $friends, $groups);
 
-        TextType::messageHandler($message, $friends, $groups);
-        RecallType::messageHandler($message);
+//        TextType::messageHandler($message, $friends, $groups);
+//        RecallType::messageHandler($message);
 //        GuessNumber::messageHandler($message);
 
 //        if ($message['type'] === 'new_friend') {
