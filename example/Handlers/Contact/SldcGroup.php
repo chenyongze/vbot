@@ -17,10 +17,14 @@ class SldcGroup
             }
 
             if ($message['type'] === 'text') {
-//                Text::send($message['from']['UserName'], 'good!');
                 if (str_contains($message['content'], '-') || str_contains($message['content'], 'help') || str_contains($message['content'], '帮助')) {
                     $content = str_replace('-', '', $message['content']);
                     Text::send($message['from']['UserName'], static::sldcReply($content, $message['from']['UserName']));
+                }
+
+                if (str_contains($message['content'], '##')) {
+                    $content = str_replace('##', '', $message['content']);
+                    Text::send($message['from']['UserName'], static::reply($content, $message['from']['UserName']));
                 }
             }
         }
