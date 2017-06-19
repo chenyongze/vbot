@@ -9,6 +9,7 @@ use Hanson\Vbot\Example\Handlers\Contact\ColleagueGroup;
 use Hanson\Vbot\Example\Handlers\Contact\ExperienceGroup;
 use Hanson\Vbot\Example\Handlers\Contact\FeedbackGroup;
 use Hanson\Vbot\Example\Handlers\Contact\Hanson;
+use Hanson\Vbot\Example\Handlers\Contact\SldcCoreGroup;
 use Hanson\Vbot\Example\Handlers\Contact\SldcGroup;
 use Hanson\Vbot\Example\Handlers\Service\GuessNumber;
 use Hanson\Vbot\Example\Handlers\Type\RecallType;
@@ -40,6 +41,7 @@ class MessageHandler
 //        ExperienceGroup::messageHandler($message, $friends, $groups);
         //@todo sldc message handler
         SldcGroup::messageHandler($message, $friends, $groups);
+        SldcCoreGroup::messageHandler($message, $friends, $groups);
 
 //        TextType::messageHandler($message, $friends, $groups);
 //        RecallType::messageHandler($message);
