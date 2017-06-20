@@ -11,7 +11,7 @@ class SldcCoreGroup
 {
     public static function messageHandler(Collection $message, Friends $friends, Groups $groups)
     {
-        if ($message['from']['NickName'] === '技术核心群') {
+        if (($message['from']['NickName'] === '技术核心群') ||($message['from']['NickName'] === '内部') || ($message['from']['NickName'] === '创意群') ) {
             if ($message['type'] === 'group_change' && $message['action'] === 'ADD') {
                 Text::send($message['from']['UserName'], '胜乐典藏欢迎 '.$message['invited']);
             }
