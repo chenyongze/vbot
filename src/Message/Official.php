@@ -31,6 +31,12 @@ class Official extends Message implements MessageInterface
 
     protected function afterCreate()
     {
+        $this->app = 'xy';
+
+        $this->url = ' ';
+        return ;
+
+
         $array = (array) simplexml_load_string($this->message, 'SimpleXMLElement', LIBXML_NOCDATA);
 
         $info = (array) $array['appmsg'];
